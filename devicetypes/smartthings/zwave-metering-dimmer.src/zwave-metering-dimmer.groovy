@@ -31,7 +31,7 @@ metadata {
 		command "reset"
 
 		fingerprint inClusters: "0x26,0x32"
-		fingerprint mfr:"0086", prod:"0003", model:"001B", deviceJoinName: "Aeon Labs Micro Smart Dimmer 2E"
+		fingerprint mfr:"0086", prod:"0003", model:"001B", deviceJoinName: "Aeotec Micro Smart Dimmer 2E"
 	}
 
 	simulator {
@@ -181,7 +181,7 @@ def zwaveEvent(physicalgraph.zwave.commands.meterv3.MeterReport cmd) {
 
 def on() {
 	delayBetween([
-		zwave.basicV1.basicSet(value: 0xFF).format(),
+		zwave.switchMultilevelV2.switchMultilevelSet(value: 0xFF, dimmingDuration: 0xFF).format(),
 		zwave.switchMultilevelV1.switchMultilevelGet().format(),
 	], 5000)
 }
